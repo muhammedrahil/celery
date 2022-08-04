@@ -1,0 +1,60 @@
+https://www.youtube.com/watch?v=LleKA8h81cw
+
+python -m venv cvenv
+
+pip install django
+
+django-admin startproject celary_test
+
+python manage.py startapp proj
+
+pip install celery
+
+1. https://github.com/MicrosoftArchive/redis
+
+2. Redis on Windows
+	You can download the latest unsigned binaries and the unsigned MSI installer from the release page.
+
+	https://github.com/microsoftarchive/redis/releases
+
+watch - https://www.youtube.com/watch?v=188Fy-oCw4w
+
+pip install redis
+
+project  -> new add celery.py
+
+proj -> 
+
+setting.py celery redis setup 
+
+https://github.com/vubon/django-celery-redis
+
+[ CELERY_BROKER_URL = 'redis://localhost:6379'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = TIME_ZONE ]
+
+
+- proj/
+  - manage.py
+  - proj/
+    - __init__.py
+    - settings.py
+    - urls.py
+
+terminal 2- celery -A 'proj' worker -l INFO > proj -> project name
+
+pip install django-celery-beat
+
+
+INSTALLED_APPS = [
+'django_celery_beat'
+] 
+
+python manage.py migration
+
+termianl 1 -python manage.py runserver
+
+terminal 3 - celery -A celary_test  beat -l info --scheduler django_celery_beat.schedulers:DatabaseScheduler
